@@ -81,7 +81,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -229,7 +229,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toothID: ll1
   snapSpeed: 8
+  returnSpeed: 5
   isPlaced: 0
+  isInsideAnySlot: 0
+  currentSlot: {fileID: 0}
 --- !u!114 &-5176424059780089489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +289,7 @@ GameObject:
   - component: {fileID: 7241400753809354697}
   - component: {fileID: 8218660245979293206}
   - component: {fileID: 2938017169923322739}
+  - component: {fileID: 5302238021825746198}
   m_Layer: 6
   m_Name: MeshHolder
   m_TagString: Untagged
@@ -375,8 +379,31 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 8
   m_Mesh: {fileID: 272620219224400015, guid: 4638812c0c5783b44b0b03b29c091bfb, type: 3}
+--- !u!136 &5302238021825746198
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374661188743507156}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0062401583
+  m_Height: 0.017641427
+  m_Direction: 1
+  m_Center: {x: 0.0059552896, y: -0.0013023333, z: 0.055090073}

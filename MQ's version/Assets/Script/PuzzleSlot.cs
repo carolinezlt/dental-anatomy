@@ -16,6 +16,28 @@ public class PuzzleSlot : MonoBehaviour
     [Header("Status")]
     public bool isFilled = false;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        PuzzlePiece piece = other.GetComponentInParent<PuzzlePiece>();
+        if (piece == null) return;
+
+        piece.isInsideAnySlot = true;
+        piece.currentSlot = this;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        PuzzlePiece piece = other.GetComponentInParent<PuzzlePiece>();
+        if (piece == null) return;
+
+        
+        piece.isInsideAnySlot = false;
+
+        
+        if (piece.currentSlot == this)
+            piece.currentSlot = null;
+    }
+
     private void OnTriggerStay(Collider other)
     {
 
@@ -33,7 +55,7 @@ public class PuzzleSlot : MonoBehaviour
 
         
         float dist = Vector3.Distance(toothTransform.position, transform.position);
-        //if (dist > maxDistance) return;
+        if (dist > maxDistance) return;
 
         
         float angle = Quaternion.Angle(toothTransform.rotation, transform.rotation);

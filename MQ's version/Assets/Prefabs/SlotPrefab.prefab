@@ -67,6 +67,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptID: 1
-  maxDistance: 0.03
+  maxDistance: 0.3
   maxAngle: 25
   isFilled: 0

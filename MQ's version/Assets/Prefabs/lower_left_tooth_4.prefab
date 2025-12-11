@@ -81,7 +81,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 7241400753809354697}
   - component: {fileID: 8218660245979293206}
   - component: {fileID: 2938017169923322739}
+  - component: {fileID: 1424679482822097210}
   m_Layer: 6
   m_Name: MeshHolder
   m_TagString: Untagged
@@ -375,8 +376,31 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 8
   m_Mesh: {fileID: 2786440611349163606, guid: 4638812c0c5783b44b0b03b29c091bfb, type: 3}
+--- !u!136 &1424679482822097210
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374661188743507156}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.005740791
+  m_Height: 0.01721937
+  m_Direction: 1
+  m_Center: {x: 0.02005123, y: 0.0014615864, z: 0.049065787}
