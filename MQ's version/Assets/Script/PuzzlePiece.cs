@@ -21,6 +21,14 @@ public class PuzzlePiece : MonoBehaviour
     private Rigidbody rb;
     private XRGrabInteractable grabInteractable;
 
+    [Header("Label")]
+    public GameObject labelObject;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip successClip;
+    public AudioClip failClip;
+
     // --- For Return ---
     private Vector3 originalPos;
     private Quaternion originalRot;
@@ -64,11 +72,13 @@ public class PuzzlePiece : MonoBehaviour
             // ---- Case 2
             if (currentSlot != null && currentSlot.acceptID != toothID)
             {
+                PlayFailSound();
                 StartCoroutine(ReturnToOriginal());
                 return;
             }
 
             // ---- Case 3
+            PlayFailSound();
             StartCoroutine(ReturnToOriginal());
         }
     }
@@ -102,7 +112,9 @@ public class PuzzlePiece : MonoBehaviour
         if (isPlaced) return;
         isPlaced = true;
 
+        PlaySuccessSound();
         SendGrabberHaptic();
+        labelObject.SetActive(false);
        
         if (grabInteractable != null)
             grabInteractable.enabled = false;
@@ -149,8 +161,30 @@ public class PuzzlePiece : MonoBehaviour
             controllerInteractor.xrController.SendHapticImpulse(0.7f, 0.2f);
         }
     }
+    private void PlaySuccessSound()
+    {
+        if (audioSource != null && successClip != null)
+            audioSource.PlayOneShot(successClip);
+    }
+
+    private void PlayFailSound()
+    {
+        if (audioSource != null && failClip != null)
+            audioSource.PlayOneShot(failClip);
+    }
 
 
+    //Added by Caroline to set original position to current position (for current difficulty level)
+    public void ResetHomeToCurrent()
+    {
+        originalPos = transform.position;
+        originalRot = transform.rotation;
+    }
 
-
+    //Added by Caroline to toggle label visibility
+    public void SetLabelVisible(bool visible)
+    {
+        if (labelObject != null)
+            labelObject.SetActive(visible);
+    }
 }
