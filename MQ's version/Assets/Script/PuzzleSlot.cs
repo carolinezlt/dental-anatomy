@@ -65,4 +65,9 @@ public class PuzzleSlot : MonoBehaviour
         piece.LockToSlot(transform);
         isFilled = true;
     }
+
+    public void ResetSlot()
+    {
+        isFilled = false;
+    }
 }

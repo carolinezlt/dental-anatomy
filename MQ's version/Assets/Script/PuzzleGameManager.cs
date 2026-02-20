@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PuzzleGameManager : MonoBehaviour
 {
@@ -16,10 +17,37 @@ public class PuzzleGameManager : MonoBehaviour
     public PuzzlePiece[] leftTeeth;
     public PuzzlePiece[] rightTeeth;
 
+    [Header("Slots (for reset)")]
+    public PuzzleSlot[] allSlots;
+
+    [Header("Hard Mode Timer & Leaderboard")]
+    public HardModeTimer hardTimer;
+    public Leaderboard leaderboard;
+    public GameObject timerCanvas;
+    public LeaderboardUIManager leaderboardUI;
+
+    private int totalPieces;
+    private int placedCount;
+    private bool hardRunActive;
+
+
+    private void OnEnable()
+    {
+        PuzzlePiece.OnAnyPiecePlaced += HandlePiecePlaced;
+    }
+
+    private void OnDisable()
+    {
+        PuzzlePiece.OnAnyPiecePlaced -= HandlePiecePlaced;
+    }
+
     private void Start()
     {
+        totalPieces = (leftTeeth?.Length ?? 0) + (rightTeeth?.Length ?? 0);
+
         ApplyDifficultyFromSettings();
-        RebuildForCurrentDifficulty();
+        RebuildForCurrentDifficulty(resetPuzzleState: true);
+        StartOrStopTimerForMode();
     }
 
     // ====== Runtime switch API (UI按钮会调用它们) ======
@@ -27,20 +55,27 @@ public class PuzzleGameManager : MonoBehaviour
     {
         GameSettings.difficulty = 0;
         ApplyDifficultyFromSettings();
-        RebuildForCurrentDifficulty();
+        RebuildForCurrentDifficulty(resetPuzzleState: true);
+        StartOrStopTimerForMode();
     }
 
     public void SwitchToHard()
     {
         GameSettings.difficulty = 1;
         ApplyDifficultyFromSettings();
-        RebuildForCurrentDifficulty();
+        RebuildForCurrentDifficulty(resetPuzzleState: true);
+        StartOrStopTimerForMode();
     }
 
     // ====== One place to rebuild layout/labels/home ======
-    private void RebuildForCurrentDifficulty()
+    private void RebuildForCurrentDifficulty(bool resetPuzzleState)
     {
         ApplyLayout();
+        if (resetPuzzleState)
+        {
+            ResetSlots();
+            ResetPiecesToLayoutPositions(); // 重置 isPlaced/grab/rb 等，且把home更新为当前布局
+        }
         ApplyLabels();
         ResetAllHomePositions(); // 把“当前摆放”记录为每颗牙的home，方便你做“放错弹回”
     }
@@ -109,6 +144,83 @@ public class PuzzleGameManager : MonoBehaviour
 
         foreach (var p in rightTeeth)
             if (p != null) p.ResetHomeToCurrent();
+    }
+
+
+    private void ResetSlots()
+    {
+        if (allSlots == null || allSlots.Length == 0)
+        {
+            // 可选：自动收集（如果你不想手动拖）
+            allSlots = FindObjectsOfType<PuzzleSlot>(true);
+        }
+
+        foreach (var s in allSlots)
+            if (s != null) s.ResetSlot();
+    }
+
+    private void ResetPiecesToLayoutPositions()
+    {
+        // 重要：重置计数
+        placedCount = 0;
+
+        // 左
+        for (int i = 0; i < leftTeeth.Length && i < leftPoints.Length; i++)
+        {
+            var p = leftTeeth[i];
+            if (p == null) continue;
+
+            p.ResetForNewRound(leftPoints[i].position, leftPoints[i].rotation, labelsOn);
+        }
+
+        // 右
+        for (int i = 0; i < rightTeeth.Length && i < rightPoints.Length; i++)
+        {
+            var p = rightTeeth[i];
+            if (p == null) continue;
+
+            p.ResetForNewRound(rightPoints[i].position, rightPoints[i].rotation, labelsOn);
+        }
+    }
+
+    private void StartOrStopTimerForMode()
+    {
+        bool isHard = (GameSettings.difficulty == 1);
+
+        hardRunActive = isHard;
+        placedCount = 0;
+
+   
+        if (timerCanvas != null)
+            timerCanvas.SetActive(isHard);
+
+        if (hardTimer != null)
+        {
+            if (isHard) hardTimer.StartTimer();
+            else hardTimer.ResetTimer();
+        }
+    }
+
+    private void HandlePiecePlaced(PuzzlePiece piece)
+    {
+        if (!hardRunActive) return; // 只在 Hard mode 计时/统计
+
+        placedCount++;
+
+        if (placedCount >= totalPieces)
+        {
+            hardRunActive = false;
+
+            float finalTime = (hardTimer != null) ? hardTimer.StopTimer() : 0f;
+
+            if (leaderboardUI != null)
+            {
+                leaderboardUI.AddRecord(finalTime);
+
+                // 自动弹出排行榜（想自动弹出就保留，不想就删掉这一行）
+                leaderboardUI.Show();
+            }
+        }
     }
 
     private void Shuffle<T>(List<T> list)

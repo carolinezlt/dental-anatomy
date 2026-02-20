@@ -33,6 +33,8 @@ public class PuzzlePiece : MonoBehaviour
     private Vector3 originalPos;
     private Quaternion originalRot;
 
+    public static System.Action<PuzzlePiece> OnAnyPiecePlaced;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -112,6 +114,8 @@ public class PuzzlePiece : MonoBehaviour
         if (isPlaced) return;
         isPlaced = true;
 
+        OnAnyPiecePlaced?.Invoke(this);
+
         PlaySuccessSound();
         SendGrabberHaptic();
         labelObject.SetActive(false);
@@ -187,4 +191,44 @@ public class PuzzlePiece : MonoBehaviour
         if (labelObject != null)
             labelObject.SetActive(visible);
     }
+
+    public void ResetForNewRound(Vector3 pos, Quaternion rot, bool labelVisible)
+    {
+        StopAllCoroutines();
+
+        isPlaced = false;
+        isInsideAnySlot = false;
+        currentSlot = null;
+
+        // 位置归位
+        transform.position = pos;
+        transform.rotation = rot;
+
+        // 重新启用抓取
+        if (grabInteractable != null)
+            grabInteractable.enabled = true;
+
+        // 让它别掉下去（你现在是 useGravity=false 的玩法）
+        rb.isKinematic = false;
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        // 记录“本局的home”（用于放错弹回）
+        originalPos = pos;
+        originalRot = rot;
+
+        SetLabelVisible(labelVisible);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
