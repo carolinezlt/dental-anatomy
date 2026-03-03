@@ -30,6 +30,9 @@ public class PuzzleGameManager : MonoBehaviour
     private int placedCount;
     private bool hardRunActive;
 
+    private List<PuzzlePiece> currentLeftLayout = new List<PuzzlePiece>();
+    private List<PuzzlePiece> currentRightLayout = new List<PuzzlePiece>();
+
 
     private void OnEnable()
     {
@@ -105,6 +108,7 @@ public class PuzzleGameManager : MonoBehaviour
         {
             Shuffle(left);
             Shuffle(right);
+          
         }
 
         if (swapLeftRight)
@@ -116,6 +120,8 @@ public class PuzzleGameManager : MonoBehaviour
 
         PlaceGroup(left, leftPoints);
         PlaceGroup(right, rightPoints);
+        currentLeftLayout = left;
+        currentRightLayout = right;
     }
 
     private void PlaceGroup(List<PuzzlePiece> pieces, Transform[] points)
@@ -161,22 +167,24 @@ public class PuzzleGameManager : MonoBehaviour
 
     private void ResetPiecesToLayoutPositions()
     {
-        // 重要：重置计数
+        //reset count
         placedCount = 0;
 
-        // 左
-        for (int i = 0; i < leftTeeth.Length && i < leftPoints.Length; i++)
+        //left
+        int leftCount = Mathf.Min(currentLeftLayout.Count, leftPoints.Length);
+        for (int i = 0; i < leftCount; i++)
         {
-            var p = leftTeeth[i];
+            var p = currentLeftLayout[i];
             if (p == null) continue;
 
             p.ResetForNewRound(leftPoints[i].position, leftPoints[i].rotation, labelsOn);
         }
 
-        // 右
-        for (int i = 0; i < rightTeeth.Length && i < rightPoints.Length; i++)
+        //right
+        int rightCount = Mathf.Min(currentRightLayout.Count, rightPoints.Length);
+        for (int i = 0; i <rightCount; i++)
         {
-            var p = rightTeeth[i];
+            var p = currentRightLayout[i];
             if (p == null) continue;
 
             p.ResetForNewRound(rightPoints[i].position, rightPoints[i].rotation, labelsOn);

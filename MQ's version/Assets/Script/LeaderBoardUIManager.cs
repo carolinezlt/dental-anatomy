@@ -111,6 +111,7 @@ public class LeaderboardUIManager : MonoBehaviour
     public void Hide()
     {
         if (!leaderboardRoot) return;
+        Debug.Log($"close leaderboard");
         leaderboardRoot.SetActive(false);
     }
     private void SaveTimes(List<float> list)
