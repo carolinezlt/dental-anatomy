@@ -12,7 +12,7 @@ public class InGameMenuController : MonoBehaviour
     public InputActionReference toggleMenuAction;
 
     [Header("Placement")]
-    public float distance = 0.8f;
+    public float distance = 1.0f;
     public float heightOffset = -0.05f;
 
     private bool isOpen;

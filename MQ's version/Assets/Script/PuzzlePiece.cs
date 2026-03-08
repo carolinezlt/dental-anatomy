@@ -31,6 +31,20 @@ public class PuzzlePiece : MonoBehaviour
     public float failHighlightDuration = 2f;
     public Color failHighlightColor = new Color(1f, 0.55f, 0.1f, 1f);
 
+    [Header("Slot Detection Grace")]
+    public float slotGraceTime = 0.15f;
+
+    private PuzzleSlot lastTouchedAnySlot = null;
+    private float lastTouchedAnySlotTime = -999f;
+
+    [Header("Snap Condition")]
+    public float snapDistance = 0.2f;
+    //public float snapAngle = 20f;         
+
+    [Header("Wrong Placement Eject")]
+    public float ejectDuration = 0.28f;
+    public float ejectArcHeight = 0.1f;
+
     [SerializeField] private Renderer[] highlightRenderers; // 不填会自动 GetComponentsInChildren<Renderer>()
 
     private Material[][] _originalMats;
@@ -146,8 +160,35 @@ public class PuzzlePiece : MonoBehaviour
         RestoreOriginalMaterials();
     }
 
+    //Slot在牙齿进入/停留时通知
+    public void NotifyTouchedAnySlot(PuzzleSlot slot)
+    {
+        if (slot == null) return;
 
+        lastTouchedAnySlot = slot;
+        lastTouchedAnySlotTime = Time.time;
+    }
 
+    public bool RecentlyTouchedAnySlot()
+    {
+        return lastTouchedAnySlot != null &&
+               Time.time - lastTouchedAnySlotTime <= slotGraceTime;
+    }
+
+    private bool CanSnapToCurrentSlot()
+    {
+        if (currentSlot == null) return false;
+        if (currentSlot.isFilled) return false;
+
+        float dist = Vector3.Distance(transform.position, currentSlot.transform.position);
+        if (dist > snapDistance) return false;
+
+        
+        //float angle = Quaternion.Angle(transform.rotation, currentSlot.transform.rotation);
+        //if (angle > snapAngle) return false;
+
+        return true;
+    }
     // Slot 会调用这两个函数
     public void RegisterCandidateSlot(PuzzleSlot slot)
     {
@@ -211,30 +252,96 @@ public class PuzzlePiece : MonoBehaviour
     private void OnRelease(SelectExitEventArgs args)
     {
         if (isPlaced) return;
+        
 
         // 松手瞬间再算一次，避免最后一帧被邻槽/顺序影响
         UpdateBestSlot();
 
-        //  成功：松手时在“最近的正确槽位”里，就直接吸附（不需要距离角度限制）
-        if (currentSlot != null && !currentSlot.isFilled)
+        // 1) 真正满足吸附条件才吸附
+        if (CanSnapToCurrentSlot())
         {
-            currentSlot.isFilled = true;   // 先占槽，防止并发
+            currentSlot.isFilled = true;
             LockToSlot(currentSlot.transform);
             return;
         }
-        //不在任何槽里，不进行任何操作
-        if (!isInsideAnySlot)
+
+        // 2) 最近碰过某个槽，但没有正确槽 -> 视为放错槽，回弹
+        if (RecentlyTouchedAnySlot())
         {
-            rb.isKinematic = false;
-            rb.useGravity = false;
+            PlayFailSound();
+            //StartReturnToOriginal();
+            StartCoroutine(EjectFromWrongSlot(lastTouchedAnySlot));
+
             return;
         }
 
-        // 失败：不在任何正确槽位候选里 -> 回弹
-        PlayFailSound();
-        StartReturnToOriginal();
+        // 3) 完全没碰任何槽 -> 只是松手，不回弹
+        rb.isKinematic = false;
+        rb.useGravity = false;
     }
 
+    //抛物线弹出
+    private IEnumerator EjectFromWrongSlot(PuzzleSlot wrongSlot)
+    {
+        if (wrongSlot == null || wrongSlot.ejectDirectionRef == null)
+            yield break;
+
+        // 清理状态
+        isInsideAnySlot = false;
+        currentSlot = null;
+        canPlaceInCurrentSlot = false;
+
+        if (grabInteractable != null)
+            grabInteractable.enabled = false;
+
+        // 先清速度，再切 kinematic，避免 warning
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true;
+        rb.useGravity = false;
+
+        Vector3 startPos = transform.position;
+        Quaternion startRot = transform.rotation;
+
+        Vector3 targetPos = wrongSlot.ejectDirectionRef.position;
+        Quaternion targetRot = startRot;   // 保持当前旋转；想改也可以
+
+        float elapsed = 0f;
+
+        while (elapsed < ejectDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / ejectDuration);
+
+            // 基础线性位移
+            Vector3 basePos = Vector3.Lerp(startPos, targetPos, t);
+
+            // 抛物线高度：中间最高，两端为0
+            float arc = 4f * t * (1f - t) * ejectArcHeight;
+
+            
+            Vector3 arcOffset = Vector3.up * arc;
+
+            transform.position = basePos + arcOffset;
+            transform.rotation = Quaternion.Slerp(startRot, targetRot, t);
+
+            yield return null;
+        }
+
+        transform.position = targetPos;
+        transform.rotation = targetRot;
+
+        rb.isKinematic = false;
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.WakeUp();
+
+        if (grabInteractable != null)
+            grabInteractable.enabled = true;
+
+        TriggerFailHighlight(); 
+    }
     private void StartReturnToOriginal()
     {
         if (returnCo != null) StopCoroutine(returnCo);

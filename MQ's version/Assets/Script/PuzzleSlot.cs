@@ -5,8 +5,23 @@ public class PuzzleSlot : MonoBehaviour
     [Header("Accept ID")]
     public string acceptID;
 
+    public enum SlotRow
+    {
+        Upper,
+        Lower
+    }
+
+    [Header("Slot Row")]
+    public SlotRow slotRow = SlotRow.Lower;
+
+    [Header("Eject Direction")]
+    public Transform ejectDirectionRef;
+
+
     [Header("Status")]
     public bool isFilled = false;
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +29,8 @@ public class PuzzleSlot : MonoBehaviour
         if (piece == null) return;
         if (piece.isPlaced) return;
         if (isFilled) return;
+
+        piece.NotifyTouchedAnySlot(this);
 
         piece.RegisterCandidateSlot(this);
     }
@@ -25,6 +42,8 @@ public class PuzzleSlot : MonoBehaviour
         if (piece == null) return;
         if (piece.isPlaced) return;
         if (isFilled) return;
+
+        piece.NotifyTouchedAnySlot(this);
 
         piece.RegisterCandidateSlot(this);
     }

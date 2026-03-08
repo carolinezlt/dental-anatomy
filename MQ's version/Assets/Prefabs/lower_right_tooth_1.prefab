@@ -191,7 +191,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -238,6 +238,12 @@ MonoBehaviour:
   audioSource: {fileID: 6918162987261789852}
   successClip: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
   failClip: {fileID: 8300000, guid: 2b05f63e5caedcd48be9817430c0c391, type: 3}
+  failHighlightDuration: 2
+  failHighlightColor: {r: 1, g: 0.55, b: 0.1, a: 1}
+  slotGraceTime: 0.15
+  snapDistance: 0.25
+  highlightRenderers: []
+  canPlaceInCurrentSlot: 0
 --- !u!114 &-5176424059780089489
 MonoBehaviour:
   m_ObjectHideFlags: 0

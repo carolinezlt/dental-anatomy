@@ -687,7 +687,7 @@
                     "name": "Select",
                     "type": "Button",
                     "id": "33754c03-48ec-46ef-9bc6-22ed6bfdd8e8",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -781,6 +781,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ToggleMenu",
+                    "type": "Button",
+                    "id": "5c10152e-d2b4-4cd5-aa80-1cea750f5140",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -946,6 +955,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4eaed9d9-245b-4c2a-b714-dc0e6ebbbfc5",
+                    "path": "<XRController>{LeftHand}/{MenuButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1579,18 +1599,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ToggleMenu",
+                    "name": "ToggleLeaderBoard",
                     "type": "Button",
-                    "id": "97bd7f73-0f07-44f6-87c2-87954cd7be08",
+                    "id": "eea39fd5-860d-40fd-8e66-81152a61ec9f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggleLeaderBoard",
+                    "name": "ToggleMenu",
                     "type": "Button",
-                    "id": "eea39fd5-860d-40fd-8e66-81152a61ec9f",
+                    "id": "32038f99-99e1-4b43-b6b8-22232047752c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1765,23 +1785,23 @@
                 },
                 {
                     "name": "",
-                    "id": "bda903f2-bfc0-4017-870d-a5655ba72cea",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ToggleMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b28c3cf3-dbfe-4a48-a4fb-367bb880ea70",
                     "path": "<XRController>{RightHand}/{SecondaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ToggleLeaderBoard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47964b7f-fc2e-44b4-b3a4-9e211683b189",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1813,7 +1833,7 @@
                     "name": "Teleport Mode Cancel",
                     "type": "Button",
                     "id": "d587b60c-39a0-4365-8075-477ce484ba0f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
