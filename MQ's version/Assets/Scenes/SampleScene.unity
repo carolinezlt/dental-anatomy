@@ -537,7 +537,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: 50cd03caee9610f40843f50c76de893e,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\nCANINE\nTOOTH"
+      value: "MAXILLARY\n LEFT\nCANINE\nTOOTH"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: 50cd03caee9610f40843f50c76de893e,
         type: 3}
@@ -629,6 +629,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 50cd03caee9610f40843f50c76de893e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d1b7e1e049ee3024697b0a173916f466, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1393,8 +1398,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: d05974ae06e169147a825a3405028285,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\nWISDOM\nTOOTH\n(3RD MOLAR)"
+      value: "MAXILLARY\n RIGHT\nWISDOM\nTOOTH\n(3RD MOLAR)"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: d05974ae06e169147a825a3405028285,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af740d2fa935454cbcaf1b41d3b083a, type: 2}
     - target: {fileID: 8725631279254857887, guid: d05974ae06e169147a825a3405028285,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3263,8 +3273,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: cd3d448d46f915947a0e6dbfe8c75aee,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\nCENTRAL INCISOR"
+      value: "MAXILLARY\n RIGHT\nCENTRAL INCISOR"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: cd3d448d46f915947a0e6dbfe8c75aee,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: acd56aff1f0e0374f859d9388f631b27, type: 2}
     - target: {fileID: 8725631279254857887, guid: cd3d448d46f915947a0e6dbfe8c75aee,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3648,7 +3663,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: f6d6471e36e610140a025e0e04029fc5,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\n12-YEAR\n(2ND)\nMOLAR"
+      value: "MAXILLARY\n LEFT\n12-YEAR\n(2ND)\nMOLAR"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: f6d6471e36e610140a025e0e04029fc5,
         type: 3}
@@ -3745,6 +3760,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: f6d6471e36e610140a025e0e04029fc5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95509edfd53df7447896b279709f0196, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5050,8 +5070,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: 1a4e846d6bbc0e54aa5c7db65d248d2f,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\nLATERAL\nINCISOR"
+      value: "MAXILLARY\n RIGHT\nLATERAL\nINCISOR"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 1a4e846d6bbc0e54aa5c7db65d248d2f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: afb463a5063549e44886e9e9dcd93fa9, type: 2}
     - target: {fileID: 8725631279254857887, guid: 1a4e846d6bbc0e54aa5c7db65d248d2f,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5440,8 +5465,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: 9a72bf0b64fd9fb4c877bf6ac86418c6,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\n1ST\nPREMOLAR\n(BICUPID)"
+      value: "MAXILLARY\n RIGHT\n1ST\nPREMOLAR\n(BICUPID)"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 9a72bf0b64fd9fb4c877bf6ac86418c6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10fb2a092eeb0fa43ad62732870d07a8, type: 2}
     - target: {fileID: 8725631279254857887, guid: 9a72bf0b64fd9fb4c877bf6ac86418c6,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5777,8 +5807,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: 9feaf07f4b93ac045a5389b7e6845248,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\n12-YEAR\n(2ND)\nMOLAR"
+      value: "MAXILLARY\n RIGHT\n12-YEAR\n(2ND)\nMOLAR"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 9feaf07f4b93ac045a5389b7e6845248,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95509edfd53df7447896b279709f0196, type: 2}
     - target: {fileID: 8725631279254857887, guid: 9feaf07f4b93ac045a5389b7e6845248,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6334,8 +6369,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: b4657c955a54a914694d4b9c14a04076,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\n6-YEAR\n(1ST)\nMOLAR"
+      value: "MAXILLARY\n RIGHT\n6-YEAR\n(1ST)\nMOLAR"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: b4657c955a54a914694d4b9c14a04076,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79ba5b9ce1b29b94ea9e90e325dd114b, type: 2}
     - target: {fileID: 8725631279254857887, guid: b4657c955a54a914694d4b9c14a04076,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7539,7 +7579,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: 69873388be680aa49ab0c58060e95989,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\n1ST\nPREMOLAR\n(BICUPID)"
+      value: "MAXILLARY\n LEFT\n1ST\nPREMOLAR\n(BICUPID)"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: 69873388be680aa49ab0c58060e95989,
         type: 3}
@@ -7636,6 +7676,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 69873388be680aa49ab0c58060e95989,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10fb2a092eeb0fa43ad62732870d07a8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10529,7 +10574,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: f2aa2a2b64823fb49a14e6749d3c39c4,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\n6-YEAR\n(1ST)\nMOLAR"
+      value: "MAXILLARY\n LEFT\n6-YEAR\n(1ST)\nMOLAR"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: f2aa2a2b64823fb49a14e6749d3c39c4,
         type: 3}
@@ -10626,6 +10671,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: f2aa2a2b64823fb49a14e6749d3c39c4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79ba5b9ce1b29b94ea9e90e325dd114b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11559,6 +11609,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.53
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 28f3be363cf429847a9d5a8fb1c2d0cb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae12f719ddddadf4f8464cbe2c7b2444, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -12072,7 +12127,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: fbccd790cac137247b6d782a34e68b07,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\n2ND\nPREMOLAR\n(BICUPID)"
+      value: "MAXILLARY\n LEFT\n2ND\nPREMOLAR\n(BICUPID)"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: fbccd790cac137247b6d782a34e68b07,
         type: 3}
@@ -12164,6 +12219,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: fbccd790cac137247b6d782a34e68b07,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c01de103ca84a6748940d3ccb36b554d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12620,7 +12680,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: 49e2769b54c23e0469ede193c14e4d6f,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\nWISDOM\nTOOTH\n(3RD MOLAR)"
+      value: "MAXILLARY\n LEFT\nWISDOM\nTOOTH\n(3RD MOLAR)"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: 49e2769b54c23e0469ede193c14e4d6f,
         type: 3}
@@ -12712,6 +12772,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: 49e2769b54c23e0469ede193c14e4d6f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af740d2fa935454cbcaf1b41d3b083a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13075,7 +13140,7 @@ PrefabInstance:
     - target: {fileID: 2160351699165632662, guid: aeb9b8ae86c7e8b46a0a602e9c6fb57f,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\nCENTRAL INCISOR\n"
+      value: "MAXILLARY\n LEFT\nCENTRAL INCISOR\n"
       objectReference: {fileID: 0}
     - target: {fileID: 3228806583045069571, guid: aeb9b8ae86c7e8b46a0a602e9c6fb57f,
         type: 3}
@@ -14238,8 +14303,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: bd46da4862228a74b8117ea010d4ce66,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\n2ND\nPREMOLAR\n(BICUPID)"
+      value: "MAXILLARY\n RIGHT\n2ND\nPREMOLAR\n(BICUPID)"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: bd46da4862228a74b8117ea010d4ce66,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c01de103ca84a6748940d3ccb36b554d, type: 2}
     - target: {fileID: 8725631279254857887, guid: bd46da4862228a74b8117ea010d4ce66,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -14639,8 +14709,13 @@ PrefabInstance:
     - target: {fileID: 8105563391808546063, guid: a0516f7063feea44083f9ad3b74c43c0,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n RIGHT\nCANINE\nTOOTH"
+      value: "MAXILLARY\n RIGHT\nCANINE\nTOOTH"
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: a0516f7063feea44083f9ad3b74c43c0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d1b7e1e049ee3024697b0a173916f466, type: 2}
     - target: {fileID: 8725631279254857887, guid: a0516f7063feea44083f9ad3b74c43c0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -14729,7 +14804,7 @@ PrefabInstance:
     - target: {fileID: 1724644538503760936, guid: b11e499c1ef1dfd4ea02c400370c0821,
         type: 3}
       propertyPath: m_text
-      value: "MAXILLAR\n LEFT\nLATERAL\nINCISOR"
+      value: "MAXILLARY\n LEFT\nLATERAL\nINCISOR"
       objectReference: {fileID: 0}
     - target: {fileID: 2101474442618986533, guid: b11e499c1ef1dfd4ea02c400370c0821,
         type: 3}
@@ -14826,6 +14901,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8218660245979293206, guid: b11e499c1ef1dfd4ea02c400370c0821,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: afb463a5063549e44886e9e9dcd93fa9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
