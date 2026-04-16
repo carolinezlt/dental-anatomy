@@ -21,10 +21,16 @@ public class PuzzleSlot : MonoBehaviour
     [Header("Status")]
     public bool isFilled = false;
 
+    [Header("Inspection")]
+    public InspectionModeManager inspectionManager;
+
 
 
     private void OnTriggerEnter(Collider other)
     {
+        if (inspectionManager != null && inspectionManager.IsInspectionMode())
+            return;
+
         var piece = other.GetComponentInParent<PuzzlePiece>();
         if (piece == null) return;
         if (piece.isPlaced) return;
@@ -37,6 +43,9 @@ public class PuzzleSlot : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (inspectionManager != null && inspectionManager.IsInspectionMode())
+            return;
+
         // Stay ×ö¶µµ×£¬±ÜÃâ Enter Â©µô
         var piece = other.GetComponentInParent<PuzzlePiece>();
         if (piece == null) return;
@@ -50,6 +59,9 @@ public class PuzzleSlot : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (inspectionManager != null && inspectionManager.IsInspectionMode())
+            return;
+
         var piece = other.GetComponentInParent<PuzzlePiece>();
         if (piece == null) return;
 

@@ -45,6 +45,14 @@ public class PuzzlePiece : MonoBehaviour
     public float ejectDuration = 0.28f;
     public float ejectArcHeight = 0.1f;
 
+    [Header("Inspection")]
+    public InspectionModeManager inspectionManager;
+
+    private Transform originalParent;
+    private bool cachedGrabEnabled;
+    private bool cachedKinematic;
+    private bool cachedUseGravity;
+
     [SerializeField] private Renderer[] highlightRenderers; // 不填会自动 GetComponentsInChildren<Renderer>()
 
     private Material[][] _originalMats;
@@ -57,9 +65,11 @@ public class PuzzlePiece : MonoBehaviour
     private Rigidbody rb;
     private XRGrabInteractable grabInteractable;
 
+
     // --- For Return ---
     private Vector3 originalPos;
     private Quaternion originalRot;
+    private Vector3 originalScale;
 
     // --- Candidate slots (解决相邻槽抢 currentSlot) ---
     private readonly HashSet<PuzzleSlot> candidateSlots = new HashSet<PuzzleSlot>();
@@ -78,6 +88,8 @@ public class PuzzlePiece : MonoBehaviour
 
         originalPos = transform.position;
         originalRot = transform.rotation;
+        originalParent = transform.parent;
+        originalScale = transform.localScale;
 
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
@@ -242,6 +254,9 @@ public class PuzzlePiece : MonoBehaviour
 
     private void OnGrab(SelectEnterEventArgs args)
     {
+        if (inspectionManager != null && inspectionManager.IsInspectionMode())
+            return;
+
         if (isPlaced) return;
         if (isReturning) return;
 
@@ -251,6 +266,10 @@ public class PuzzlePiece : MonoBehaviour
 
     private void OnRelease(SelectExitEventArgs args)
     {
+        if (inspectionManager != null && inspectionManager.IsInspectionMode())
+            return;
+
+
         if (isPlaced) return;
         
 
@@ -406,6 +425,7 @@ public class PuzzlePiece : MonoBehaviour
 
         // 一旦放置成功，不再允许 slot 竞争
         candidateSlots.Clear();
+        allTouchedSlots.Clear();
         isInsideAnySlot = false;
         currentSlot = null;
         canPlaceInCurrentSlot = false;
@@ -422,6 +442,8 @@ public class PuzzlePiece : MonoBehaviour
 
         rb.isKinematic = true;
         rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         StartCoroutine(SnapToSlot(slotTransform));
     }
@@ -442,6 +464,9 @@ public class PuzzlePiece : MonoBehaviour
 
         transform.position = target.position;
         transform.rotation = target.rotation;
+
+        transform.SetParent(target, true);
+       // transform.localScale = originalScale;
     }
 
     private void SendGrabberHaptic()
@@ -483,6 +508,7 @@ public class PuzzlePiece : MonoBehaviour
         StopAllCoroutines();
 
         candidateSlots.Clear();
+        allTouchedSlots.Clear();
         isPlaced = false;
         isInsideAnySlot = false;
         currentSlot = null;
@@ -490,6 +516,9 @@ public class PuzzlePiece : MonoBehaviour
         isReturning = false;
         returnCo = null;
 
+        transform.SetParent(originalParent, false);
+
+        transform.localScale = originalScale;
         transform.position = pos;
         transform.rotation = rot;
 

@@ -63,7 +63,7 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "ccb35b49-777b-460f-bca8-3168c41cc779",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -121,6 +121,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleInspection",
+                    "type": "Button",
+                    "id": "fc259f51-74a1-4211-81a2-594fdcb4328c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InspectionScale",
+                    "type": "Value",
+                    "id": "47c870e2-f550-4ca5-b85e-dcc2776ef645",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -407,6 +425,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Secondary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04d65f93-2598-4a63-9c8f-41120c7a6149",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleInspection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3603b8ed-8071-4908-8dd0-9f2098cb4de5",
+                    "path": "<XRController>{LeftHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InspectionScale",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
